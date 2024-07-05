@@ -33,11 +33,12 @@
 <body
   class="dark:bg-black bg-white h-screen text-black dark:text-white px-5 md:px-20 opacity-0 animate-fade-in transition duration-500">
   <!-- Navbar -->
-  <header class="flex w-full overflow-hidden pt-10 pb-1">
+  <header class="flex w-full overflow-hidden pt-10 pb-3">
+    <!-- Navbar -->
     <nav id="nav" x-data="{ open: false }" role="navigation" class="w-full">
       <div class="container mx-auto flex flex-wrap items-center md:flex-no-wrap">
         <div class="mr-4 md:mr-8">
-          <a href="../index.html" class="text-2xl font-signika font-bold">PIXELS BY MAHESH</a>
+          <a href="index.html" class="text-2xl font-signika font-bold">PIXELS BY MAHESH</a>
         </div>
         <div class="ml-auto md:hidden flex items-center justify-start">
           <button onclick="menuToggle()" @click="open = !open"
@@ -52,7 +53,7 @@
                 class="block absolute  h-0.5 w-5 bg-current   transform transition duration-500 ease-in-out"
                 :class="{'opacity-0': open } "></span>
               <span aria-hidden="true"
-                class="block absolute  h-0.5 w-5 bg-current transform  transition duration-500 ease-in-out"
+                class="block absolute h-0.5 w-5 bg-current transform  transition duration-500 ease-in-out"
                 :class="{'-rotate-45': open, ' translate-y-1.5': !open}"></span>
             </div>
           </button>
