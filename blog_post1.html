@@ -50,6 +50,23 @@
       plugins: [],
     }
   </script>
+
+<style>
+    #menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-out;
+    }
+
+    #menu.open {
+      max-height: 200px;
+    }
+
+    article {
+      text-align: justify;
+      text-indent: 2em; /* Adjust this value for the tab space */
+    }
+  </style>
 </head>
 
 <body
