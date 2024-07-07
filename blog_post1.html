@@ -241,6 +241,7 @@
           </svg>
           LinkedIn
         </a>
+        
         <!-- Copy Link Button -->
         <a onclick="copyLink()" class="share-button">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5 h-5" viewBox="0 0 16 16">
@@ -250,14 +251,27 @@
           Copy Link
         </a>
 
+        <!-- Notification Popup -->
+        <div id="copyNotification" class="hidden fixed bottom-5 right-5 bg-white text-black px-4 py-2 rounded shadow-lg">
+          Link copied to clipboard!
+        </div>
+
         <script>
           function copyLink() {
             var url = 'https://pixelsbymahesh.netlify.app/blog_post1';
             navigator.clipboard.writeText(url)
-              .then(() => alert('Link copied to clipboard!'))
+              .then(() => {
+                // Show notification
+                var notification = document.getElementById('copyNotification');
+                notification.classList.remove('hidden');
+                setTimeout(function () {
+                  notification.classList.add('hidden');
+                }, 3000); // Hide after 3 seconds
+              })
               .catch((error) => console.error('Failed to copy:', error));
           }
         </script>
+
       </div>
 
       <p style="font-size: 1.5em; font-family: 'Montserrat', serif; margin-bottom: 20px;"><strong>Witnessing the Beauty of Sunset</strong></p>
