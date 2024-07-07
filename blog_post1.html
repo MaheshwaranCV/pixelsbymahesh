@@ -144,6 +144,15 @@
       transition: opacity 0.3s;
     }
 
+    /* Adjust tooltip position for smaller screens */
+    @media (max-width: 600px){
+      .tooltip {
+        left: 50%;
+        top: 110%;
+        transform: translate(-50%, 0);
+      }
+    }
+
     .tooltip.visible {
       opacity: 1;
     }
