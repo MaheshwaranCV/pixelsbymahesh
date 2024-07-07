@@ -77,7 +77,7 @@
       plugins: [],
     }
   </script>
-  <style>
+  <!-- <style>
     .author-link {
       color: inherit;
       text-decoration: none;
@@ -144,7 +144,6 @@
       transition: opacity 0.3s;
     }
 
-    /* Adjust tooltip position for smaller screens */
     @media (max-width: 600px){
       .tooltip {
         left: 63%;
@@ -189,6 +188,131 @@
         tooltip.className = 'tooltip visible';
         tooltip.textContent = 'Link copied to clipboard!';
         event.target.parentNode.appendChild(tooltip);
+        setTimeout(function() {
+          tooltip.classList.remove('visible');
+          setTimeout(function() {
+            tooltip.parentNode.removeChild(tooltip);
+          }, 300);
+        }, 2000);
+      })
+      .catch((error) => console.error('Failed to copy:', error));
+  }
+</script> -->
+
+<style>
+  .author-link {
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .author-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 2px;
+    right: 0;
+    background: grey;
+    transition: width 0.3s ease;
+    -webkit-transition: width 0.3s ease;
+  }
+
+  .author-link:hover::after {
+    width: 100%;
+    left: 0;
+    background: grey;
+  }
+
+  .share-buttons {
+    display: flex;
+    justify-content: left;
+    margin-top: 20px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .share-button {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.3s;
+    position: relative;
+  }
+
+  .share-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+
+  .share-button svg {
+    margin-right: 5px;
+  }
+
+  .tooltip {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+  }
+
+  .tooltip.visible {
+    opacity: 1;
+  }
+
+  @media (max-width: 600px) {
+    .tooltip {
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translateY(-50%);
+      margin-left: 10px;
+    }
+  }
+</style>
+
+<script>
+  function menuToggle() {
+    var menu = document.getElementById('menu');
+    var ulMenu = document.getElementById('ulMenu');
+
+    if (menu.classList.contains('h-0')) {
+      menu.classList.remove('h-0');
+      menu.classList.add('h-auto');
+    } else {
+      menu.classList.remove('h-auto');
+      menu.classList.add('h-0');
+    }
+
+    if (ulMenu.classList.contains('mt-5')) {
+      ulMenu.classList.remove('mt-5');
+      ulMenu.classList.add('mt-0');
+    } else {
+      ulMenu.classList.remove('mt-0');
+      ulMenu.classList.add('mt-5');
+    }
+  }
+
+  function copyLink(event) {
+    var url = 'https://pixelsbymahesh.netlify.app/blog_post1';
+    navigator.clipboard.writeText(url)
+      .then(() => {
+        var tooltip = document.createElement('div');
+        tooltip.className = 'tooltip visible';
+        tooltip.textContent = 'Link copied to clipboard!';
+        event.target.closest('.share-button').appendChild(tooltip);
         setTimeout(function() {
           tooltip.classList.remove('visible');
           setTimeout(function() {
@@ -271,20 +395,18 @@
       <h1 class="text-4xl font-bold" style="font-family: 'Montserrat', serif; margin-bottom: 15px;">The Beauty of Sunset</h1>
       <div style="font-family: 'Montserrat', serif; margin-bottom: 15px;" class="mb-4 text-gray-600 dark:text-gray-300">Published on July 5, 2024 by <a href="https://pixelsbymahesh.netlify.app/about_me" style="color: inherit" class="author-link">Maheshwaran</a></div>
 
-      <div class="share-buttons" style="margin-bottom: 30px;">
+      <!-- <div class="share-buttons" style="margin-bottom: 30px;">
         <a class="transition duration-300 hover:opacity-75" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fpixelsbymahesh.netlify.app%2Fblog_post1&text=The%20Beauty%20of%20Sunset.%0A&via=MaheshwaranCV" target="_blank" class="share-button" rel="noreferrer">
           <span class="sr-only"> Twitter </span>
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <!-- <path d="M14.095479,10.316482L22.286354,1h-1.940718l-7.115352,8.087682L7.551414,1H1l8.589488,12.231093L1,23h1.940717  l7.509372-8.542861L16.448587,23H23L14.095479,10.316482z M11.436522,13.338465l-0.871624-1.218704l-6.924311-9.68815h2.981339  l5.58978,7.82155l0.867949,1.218704l7.26506,10.166271h-2.981339L11.436522,13.338465z" /> -->
               <path d="M21.15979,1H2.84021C1.823853,1,1,1.823853,1,2.84021v18.31958C1,22.176147,1.823853,23,2.84021,23h18.31958   C22.176147,23,23,22.176147,23,21.15979V2.84021C23,1.823853,22.176147,1,21.15979,1z M15.235352,20l-4.362549-6.213013   L5.411438,20H4l6.246887-7.104675L4,4h4.764648l4.130127,5.881958L18.06958,4h1.411377l-5.95697,6.775635L20,20H15.235352z" />
             </svg>
         </a>
         <a class="transition duration-300 hover:opacity-75" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpixelsbymahesh.netlify.app%2Fblog_post1" target="_blank" class="share-button">
           <span class="sr-only"> Facebook </span>
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.406.593 24 1.325 24H12.81v-9.294H9.692v-3.622h3.118V8.41c0-3.1 1.893-4.785 4.659-4.785 1.325 0 2.462.099 2.794.144v3.24h-1.918c-1.504 0-1.795.715-1.795 1.763v2.31h3.59l-.467 3.622h-3.123V24h6.126C23.406 24 24 23.406 24 22.676V1.325C24 .593 23.406 0 22.675 0z"/>
-              <!-- <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" /> -->
-              </svg>
+              <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.406.593 24 1.325 24H12.81v-9.294H9.692v-3.622h3.118V8.41c0-3.1 1.893-4.785 4.659-4.785 1.325 0 2.462.099 2.794.144v3.24h-1.918c-1.504 0-1.795.715-1.795 1.763v2.31h3.59l-.467 3.622h-3.123V24h6.126C23.406 24 24 23.406 24 22.676V1.325C24 .593 23.406 0 22.675 0z"/>
+            </svg>
         </a>
         <a class="transition duration-300 hover:opacity-75" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fpixelsbymahesh.netlify.app%2Fblog_post1" target="_blank" class="share-button">
           <span class="sr-only">LinkedIn</span>
@@ -296,7 +418,55 @@
           <span class="sr-only">Copy Link</span>
             <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" class="w-6 h-6" viewBox="0 0 512 511.999"><path d="M476.335 35.664v.001c47.554 47.552 47.552 125.365.002 172.918l-101.729 101.73c-60.027 60.025-162.073 42.413-194.762-32.45 35.888-31.191 53.387-21.102 87.58-6.638 20.128 8.512 43.74 3.955 60.08-12.387l99.375-99.371c21.49-21.493 21.492-56.662 0-78.155-21.489-21.488-56.677-21.472-78.151 0l-71.278 71.28c-23.583-11.337-50.118-14.697-75.453-10.07a121.476 121.476 0 0118.767-24.207l82.651-82.65c47.554-47.551 125.365-47.555 172.918-.001zM35.664 476.334l.001.001c47.554 47.552 125.365 47.552 172.917 0l85.682-85.682a121.496 121.496 0 0019.325-25.157c-27.876 6.951-57.764 4.015-83.932-8.805l-70.192 70.19c-21.472 21.471-56.658 21.492-78.149 0-21.492-21.491-21.493-56.658 0-78.149l99.375-99.376c20.363-20.363 61.002-26.435 91.717 1.688 29.729-3.133 41.275-8.812 59.742-26.493-39.398-69.476-137.607-80.013-194.757-22.863L35.664 303.417c-47.552 47.553-47.552 125.364 0 172.917z"/></svg>
         </a>
+      </div> -->
+
+
+      <div class="share-buttons" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px;">
+        <!-- Twitter Button -->
+        <div class="share-button" style="position: relative; display: flex; align-items: center; padding: 10px; text-decoration: none; color: inherit; transition: background-color 0.3s;">
+          <a href="https://twitter.com" target="_blank" style="cursor: pointer;">
+            <span class="sr-only">Share on Twitter</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6"><path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.897-.959-2.063-1.559-3.334-1.559-2.525 0-4.572 2.047-4.572 4.572 0 .358.042.706.121 1.044-3.797-.19-7.156-2.008-9.408-4.774-.393.67-.618 1.45-.618 2.28 0 1.577.803 2.969 2.025 3.784-.747-.022-1.45-.229-2.072-.568v.057c0 2.206 1.565 4.044 3.641 4.457-.38.103-.781.159-1.193.159-.291 0-.572-.027-.847-.08.573 1.807 2.23 3.122 4.189 3.157-1.534 1.203-3.46 1.919-5.562 1.919-.361 0-.716-.021-1.068-.063 1.983 1.27 4.34 2.016 6.875 2.016 8.251 0 12.766-6.836 12.766-12.766 0-.194-.005-.388-.014-.581.878-.634 1.639-1.426 2.244-2.328z"/></svg>
+          </a>
+          <div class="tooltip" style="position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); background-color: rgba(0, 0, 0, 0.8); color: white; padding: 8px; border-radius: 4px; font-size: 14px; white-space: nowrap; opacity: 0; transition: opacity 0.3s; z-index: 1;">
+            Share on Twitter
+          </div>
+        </div>
+      
+        <!-- Facebook Button -->
+        <div class="share-button" style="position: relative; display: flex; align-items: center; padding: 10px; text-decoration: none; color: inherit; transition: background-color 0.3s;">
+          <a href="https://facebook.com" target="_blank" style="cursor: pointer;">
+            <span class="sr-only">Share on Facebook</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6"><path d="M21.5 2H2.5C1.39543 2 0.5 2.89543 0.5 4V20C0.5 21.1046 1.39543 22 2.5 22H13.5V14.5H10.5V11.5H13.5V9.5C13.5 6.925 15.294 5 17.7 5c1.0996 0 2.2002.1 2.6001.15v2.4H18.7C17.5944 7.55 17 8.65 17 10v1.5H19.5L18.9 14.5H17V22H21.5C22.6046 22 23.5 21.1046 23.5 20V4C23.5 2.89543 22.6046 2 21.5 2Z"/></svg>
+          </a>
+          <div class="tooltip" style="position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); background-color: rgba(0, 0, 0, 0.8); color: white; padding: 8px; border-radius: 4px; font-size: 14px; white-space: nowrap; opacity: 0; transition: opacity 0.3s; z-index: 1;">
+            Share on Facebook
+          </div>
+        </div>
+      
+        <!-- LinkedIn Button -->
+        <div class="share-button" style="position: relative; display: flex; align-items: center; padding: 10px; text-decoration: none; color: inherit; transition: background-color 0.3s;">
+          <a href="https://linkedin.com" target="_blank" style="cursor: pointer;">
+            <span class="sr-only">Share on LinkedIn</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6"><path d="M21.5 2H2.5C1.39543 2 0.5 2.89543 0.5 4V20C0.5 21.1046 1.39543 22 2.5 22H21.5C22.6046 22 23.5 21.1046 23.5 20V4C23.5 2.89543 22.6046 2 21.5 2ZM7.95 18.25H4.85V9.35H7.95V18.25ZM6.4 8.05C5.2164 8.05 4.45 7.2836 4.45 6.2C4.45 5.1164 5.2164 4.35 6.4 4.35C7.5836 4.35 8.35 5.1164 8.35 6.2C8.35 7.2836 7.5836 8.05 6.4 8.05ZM18.25 18.25h-3.1v-4.9c0-1.1664-.4372-1.9546-1.5312-1.9546-1.0468 0-1.6714.7022-1.9386 1.3828-.0996.2448-.1248.5844-.1248.9256v4.5468h-3.1V9.35h2.95v1.2324h.0492c.4128-.7824 1.42-1.6056 2.9052-1.6056 2.1094 0 2.5 1.4028 2.5 3.2286V18.25z"/></svg>
+          </a>
+          <div class="tooltip" style="position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); background-color: rgba(0, 0, 0, 0.8); color: white; padding: 8px; border-radius: 4px; font-size: 14px; white-space: nowrap; opacity: 0; transition: opacity 0.3s; z-index: 1;">
+            Share on LinkedIn
+          </div>
+        </div>
+      
+        <!-- Copy Link Button -->
+        <div class="share-button" style="position: relative; display: flex; align-items: center; padding: 10px; text-decoration: none; color: inherit; transition: background-color 0.3s;">
+          <a onclick="copyLink(event)" style="cursor: pointer;">
+            <span class="sr-only">Copy Link</span>
+              <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" class="w-6 h-6" viewBox="0 0 512 511.999"><path d="M476.335 35.664v.001c47.554 47.552 47.552 125.365.002 172.918l-101.729 101.73c-60.027 60.025-162.073 42.413-194.762-32.45 35.888-31.191 53.387-21.102 87.58-6.638 20.128 8.512 43.74 3.955 60.08-12.387l99.375-99.371c21.49-21.493 21.492-56.662 0-78.155-21.489-21.488-56.677-21.472-78.151 0l-71.278 71.28c-23.583-11.337-50.118-14.697-75.453-10.07a121.476 121.476 0 0118.767-24.207l82.651-82.65c47.554-47.551 125.365-47.555 172.918-.001zM35.664 476.334l.001.001c47.554 47.552 125.365 47.552 172.917 0l85.682-85.682a121.496 121.496 0 0019.325-25.157c-27.876 6.951-57.764 4.015-83.932-8.805l-70.192 70.19c-21.472 21.471-56.658 21.492-78.149 0-21.492-21.491-21.493-56.658 0-78.149l99.375-99.376c20.363-20.363 61.002-26.435 91.717 1.688 29.729-3.133 41.275-8.812 59.742-26.493-39.398-69.476-137.607-80.013-194.757-22.863L35.664 303.417c-47.552 47.553-47.552 125.364 0 172.917z"/></svg>
+          </a>
+          <div class="tooltip" style="position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); background-color: rgba(0, 0, 0, 0.8); color: white; padding: 8px; border-radius: 4px; font-size: 14px; white-space: nowrap; opacity: 0; transition: opacity 0.3s; z-index: 1;">
+              Link copied to clipboard!
+          </div>
+        </div>
       </div>
+
 
 
       <p style="font-size: 1.5em; font-family: 'Montserrat', serif; margin-bottom: 20px;"><strong>Witnessing the Beauty of Sunset</strong></p>
