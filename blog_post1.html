@@ -99,8 +99,30 @@
         .share-button svg {
           margin-right: 5px;
         }
-        
+
     </style>
+    <script>
+      function menuToggle() {
+        var menu = document.getElementById('menu');
+        var ulMenu = document.getElementById('ulMenu');
+  
+        if (menu.classList.contains('h-0')) {
+          menu.classList.remove('h-0');
+          menu.classList.add('h-auto');
+        } else {
+          menu.classList.remove('h-auto');
+          menu.classList.add('h-0');
+        }
+  
+        if (ulMenu.classList.contains('mt-5')) {
+          ulMenu.classList.remove('mt-5');
+          ulMenu.classList.add('mt-0');
+        } else {
+          ulMenu.classList.remove('mt-0');
+          ulMenu.classList.add('mt-5');
+        }
+      }
+    </script>
 </head>
 
 <body
