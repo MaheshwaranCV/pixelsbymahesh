@@ -166,9 +166,9 @@
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 10px;
+    padding: 16px;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 20px;
     white-space: nowrap;
     opacity: 0;
     transition: bottom 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -220,7 +220,7 @@
       .then(() => {
         var tooltip = document.createElement('div');
         tooltip.className = 'tooltip visible';
-        tooltip.textContent = '✔ Link copied to clipboard!';
+        tooltip.textContent = 'Link copied to clipboard!';
         event.target.parentNode.appendChild(tooltip);
         setTimeout(function() {
           tooltip.classList.remove('visible');
