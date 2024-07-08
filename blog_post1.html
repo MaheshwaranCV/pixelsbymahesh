@@ -130,7 +130,7 @@
       margin-right: 5px;
     }
 
-    .tooltip {
+    /* .tooltip {
       position: absolute;
       top: 220px;
       left: 50%;
@@ -155,7 +155,41 @@
 
     .tooltip.visible {
       opacity: 1;
+    } */
+</style>
+
+<style>
+  .tooltip {
+    position: fixed;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: bottom 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  }
+
+  .tooltip.visible {
+    bottom: 20px;
+    opacity: 1;
+  }
+
+  @media (max-width: 600px) {
+    .tooltip {
+      bottom: -50px;
+      left: 50%;
+      transform: translateX(-50%);
     }
+
+    .tooltip.visible {
+      bottom: 20px;
+    }
+  }
 </style>
 
 <script>
@@ -186,7 +220,7 @@
       .then(() => {
         var tooltip = document.createElement('div');
         tooltip.className = 'tooltip visible';
-        tooltip.textContent = 'Link copied to clipboard!';
+        tooltip.textContent = '✅ Link copied to clipboard!';
         event.target.parentNode.appendChild(tooltip);
         setTimeout(function() {
           tooltip.classList.remove('visible');
