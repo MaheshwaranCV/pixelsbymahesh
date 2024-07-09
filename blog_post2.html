@@ -190,17 +190,18 @@
   }
 
   .toggle-wrapper {
-    cursor: pointer;
-    width: 30px; /* Adjust width as needed */
-    height: 14px; /* Adjust height as needed */
     position: relative;
-    flex-shrink: 0; /* Ensure it doesn't affect flex layout */
+    width: 30px;
+    height: 14px;
+    background-color: #ccc;
+    border-radius: 7px;
+    cursor: pointer;
   }
 
   .toggle-thumb {
-    width: 14px; /* Adjust size of the thumb */
-    height: 14px; /* Adjust size of the thumb */
-    background-color: #ccc;
+    width: 14px;
+    height: 14px;
+    background-color: #fff;
     border-radius: 50%;
     position: absolute;
     top: 0;
@@ -214,9 +215,16 @@
   }
 
   input[type="checkbox"].sr-only:checked + .toggle-wrapper .toggle-thumb {
-    transform: translateX(calc(100% - 14px)); /* Adjust according to thumb size */
+    transform: translateX(16px); /* Adjust based on thumb width */
   }
 </style>
+
+<script>
+  function toggleTheme() {
+    const body = document.body;
+    body.classList.toggle('dark-theme');
+  }
+</script>
 
 <script>
   function menuToggle() {
@@ -279,14 +287,11 @@
 
         <div class="flex items-center">
           <label for="toggle-theme" class="sr-only">Toggle Dark Mode</label>
-          <div class="relative">
-            <input type="checkbox" id="toggle-theme" class="sr-only" onchange="toggleTheme()">
-            <div class="toggle-wrapper bg-gray-400 rounded-full p-1.5 flex items-center">
-              <div class="toggle-thumb rounded-full bg-white shadow-md"></div>
-            </div>
+          <div class="toggle-wrapper" onclick="toggleTheme()">
+            <input type="checkbox" id="toggle-theme" class="sr-only">
+            <div class="toggle-thumb"></div>
           </div>
         </div>
-
 
         <div class="ml-auto md:hidden flex items-center justify-start">
           <button onclick="menuToggle()" @click="open = !open"
