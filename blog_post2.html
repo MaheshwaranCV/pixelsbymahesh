@@ -220,6 +220,67 @@
         <div class="mr-4 md:mr-8">
           <a href="index.html" class="text-2xl font-signika font-bold">MAHESH</a>
         </div>
+
+        <div class="flex items-center ml-auto">
+          <label for="toggle-theme" class="text-gray-600 dark:text-gray-300 mr-3">Toggle Dark Mode</label>
+          <div class="relative">
+            <input type="checkbox" id="toggle-theme" class="sr-only" onchange="toggleTheme()">
+            <div class="toggle-wrapper w-12 h-6 bg-gray-400 rounded-full p-1.5 flex items-center">
+              <div class="toggle-thumb w-6 h-6 bg-white rounded-full shadow-md transform duration-300 ease-in-out"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('dark-theme');
+          }
+        </script>
+        <style>
+          /* Global styles */
+body {
+  font-family: 'Montserrat', serif;
+}
+
+/* Navbar styles */
+header {
+  background-color: #f3f4f6; /* Light mode background color */
+  color: #333; /* Light mode text color */
+}
+
+.dark-theme header {
+  background-color: #1a202c; /* Dark mode background color */
+  color: #fff; /* Dark mode text color */
+}
+
+/* Toggle switch styles */
+.toggle-wrapper {
+  cursor: pointer;
+}
+
+.toggle-thumb {
+  transition: transform 0.3s ease-in-out;
+}
+
+.toggle-wrapper input:checked + .toggle-thumb {
+  transform: translateX(100%);
+}
+
+/* Article container styles */
+.article-container {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.dark-mode .article-container {
+  background-color: #2d3748; /* Dark mode article background color */
+  color: #cbd5e0; /* Dark mode article text color */
+}
+
+        </style>
+        
+
+        
+
         <div class="ml-auto md:hidden flex items-center justify-start">
           <button onclick="menuToggle()" @click="open = !open"
             class="tap-highlight-transparent text-black dark:text-white w-5 h-5 relative focus:outline-none"
