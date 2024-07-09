@@ -168,6 +168,53 @@
     }
 </style>
 
+<style>
+  body {
+    font-family: 'Montserrat', serif;
+    margin: 0;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+
+  .dark-theme {
+    background-color: #1a202c;
+    color: #fff;
+  }
+
+  header {
+    background-color: #f3f4f6;
+    color: #333;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .toggle-wrapper {
+    cursor: pointer;
+  }
+
+  .toggle-thumb {
+    width: 24px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  input[type="checkbox"].sr-only {
+    position: absolute;
+    left: -9999px;
+  }
+
+  input[type="checkbox"].sr-only + .toggle-wrapper .toggle-thumb {
+    transform: translateX(0);
+  }
+
+  input[type="checkbox"]:checked + .toggle-wrapper .toggle-thumb {
+    transform: translateX(100%);
+  }
+</style>
+
 <script>
   function menuToggle() {
     var menu = document.getElementById('menu');
@@ -225,6 +272,8 @@
         <div class="mr-4 md:mr-8">
           <a href="index.html" class="text-2xl font-signika font-bold">MAHESH</a>
         </div>
+
+
         <div class="flex items-center ml-auto">
           <label for="toggle-theme" class="text-gray-600 dark:text-gray-300 mr-3">Toggle Dark Mode</label>
           <div class="relative">
@@ -234,42 +283,8 @@
             </div>
           </div>
         </div>
-        <style>
-          body {
-            font-family: 'Montserrat', serif;
-          }
 
-          header {
-            background-color: #f3f4f6;
-            color: #333;
-          }
 
-          .dark-theme header {
-            background-color: #1a202c;
-            color: #fff;
-          }
-
-          .toggle-wrapper {
-            cursor: pointer;
-          }
-
-          .toggle-thumb {
-            transition: transform 0.3s ease-in-out;
-          }
-
-          .toggle-wrapper input:checked + .toggle-thumb {
-            transform: translateX(100%);
-          }
-
-          .article-container {
-            transition: background-color 0.3s ease-in-out;
-          }
-
-          .dark-mode .article-container {
-            background-color: #2d3748;
-            color: #cbd5e0;
-          }
-    </style>
         <div class="ml-auto md:hidden flex items-center justify-start">
           <button onclick="menuToggle()" @click="open = !open"
             class="tap-highlight-transparent text-black dark:text-white w-5 h-5 relative focus:outline-none"
