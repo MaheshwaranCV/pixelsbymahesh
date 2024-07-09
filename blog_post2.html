@@ -382,9 +382,23 @@
     <div class="max-w-screen-xl py-16 mx-auto">
       <div class="grid grid-cols-1 gap-8 text-center mx-auto">
 
-        <button id="scrollToTopBtn" class="fixed bottom-5 right-5 p-3 bg-gray-700 text-white rounded-full shadow-lg transition-transform transform hover:scale-110" style="display: none;">
-          ^
+        <button id="scrollToTopBtn" class="fixed bottom-5 right-5 p-3 bg-gray-700 text-white rounded-full shadow-lg hover:bg-gray-800 focus:outline-none focus:ring">
+          &#9650; TOP
         </button>
+        <style>
+          #scrollToTopBtn {
+            display: none;
+            font-size: 16px;
+            text-align: center;
+            width: 60px;
+            height: 60px;
+          }
+        </style>
+        
+
+        <!-- <button id="scrollToTopBtn" class="fixed bottom-5 right-5 p-3 bg-gray-700 text-white rounded-full shadow-lg transition-transform transform hover:scale-110" style="display: none;">
+          ^
+        </button> -->
         <!-- <script>
           const scrollToTopBtn = document.getElementById("scrollToTopBtn");
           window.onscroll = function() { scrollFunction() };
