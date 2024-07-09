@@ -220,13 +220,6 @@
 </style>
 
 <script>
-  function toggleTheme() {
-    const body = document.body;
-    body.classList.toggle('dark-theme');
-  }
-</script>
-
-<script>
   function menuToggle() {
     var menu = document.getElementById('menu');
     var ulMenu = document.getElementById('ulMenu');
@@ -284,10 +277,8 @@
           <a href="index.html" class="text-2xl font-signika font-bold">MAHESH</a>
         </div>
 
-
         <div class="flex items-center">
-          <label for="toggle-theme" class="sr-only">Toggle Dark Mode</label>
-          <div class="toggle-wrapper" onclick="toggleTheme()">
+          <div class="toggle-wrapper">
             <input type="checkbox" id="toggle-theme" class="sr-only">
             <div class="toggle-thumb"></div>
           </div>
