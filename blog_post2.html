@@ -385,13 +385,9 @@
         <button id="scrollToTopBtn" class="fixed bottom-5 right-5 p-3 bg-gray-700 text-white rounded-full shadow-lg transition-transform transform hover:scale-110" style="display: none;">
           ^
         </button>
-        <script>
-          // Get the button
+        <!-- <script>
           const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-        
-          // When the user scrolls down 20px from the top of the document, show the button
           window.onscroll = function() { scrollFunction() };
-        
           function scrollFunction() {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
               scrollToTopBtn.style.display = "block";
@@ -399,14 +395,37 @@
               scrollToTopBtn.style.display = "none";
             }
           }
-        
-          // When the user clicks on the button, scroll to the top of the document
           scrollToTopBtn.onclick = function() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
           }
-        </script>
+        </script> -->
 
+        <script>
+          let lastScrollTop = 0;
+          const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+          window.addEventListener("scroll", function() {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
+            if (currentScroll > lastScrollTop) {
+              scrollToTopBtn.style.display = "none";
+            } else {
+              if (currentScroll > 20) {
+                scrollToTopBtn.style.display = "block";
+              } else {
+                scrollToTopBtn.style.display = "none";
+              }
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+          });
+        
+          scrollToTopBtn.onclick = function() {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          }
+        </script>
 
         <div>
           <p class="font-signika"><b>MAHESHWARAN C V</b></p>
