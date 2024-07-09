@@ -220,6 +220,21 @@
 </style>
 
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleSwitch = document.querySelector('.toggle-wrapper input[type="checkbox"]');
+    
+    toggleSwitch.addEventListener('change', function() {
+      if (this.checked) {
+        document.body.classList.add('dark-theme');
+      } else {
+        document.body.classList.remove('dark-theme');
+      }
+    });
+  });
+</script>
+</head>
+
+<script>
   function menuToggle() {
     var menu = document.getElementById('menu');
     var ulMenu = document.getElementById('ulMenu');
@@ -257,11 +272,6 @@
         }, 2000);
       })
       .catch((error) => console.error('Failed to copy:', error));
-  }
-
-  function toggleTheme() {
-    const body = document.body;
-    body.classList.toggle('dark-theme');
   }
 </script>
 </head>
