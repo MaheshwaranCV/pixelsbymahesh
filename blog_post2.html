@@ -191,13 +191,20 @@
 
   .toggle-wrapper {
     cursor: pointer;
+    width: 30px; /* Adjust width as needed */
+    height: 14px; /* Adjust height as needed */
+    position: relative;
+    flex-shrink: 0; /* Ensure it doesn't affect flex layout */
   }
 
   .toggle-thumb {
-    width: 24px;
-    height: 24px;
+    width: 14px; /* Adjust size of the thumb */
+    height: 14px; /* Adjust size of the thumb */
     background-color: #ccc;
     border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
     transition: transform 0.3s ease-in-out;
   }
 
@@ -206,12 +213,8 @@
     left: -9999px;
   }
 
-  input[type="checkbox"].sr-only + .toggle-wrapper .toggle-thumb {
-    transform: translateX(0);
-  }
-
-  input[type="checkbox"]:checked + .toggle-wrapper .toggle-thumb {
-    transform: translateX(100%);
+  input[type="checkbox"].sr-only:checked + .toggle-wrapper .toggle-thumb {
+    transform: translateX(calc(100% - 14px)); /* Adjust according to thumb size */
   }
 </style>
 
@@ -274,12 +277,12 @@
         </div>
 
 
-        <div class="flex items-center ml-auto">
-          <label for="toggle-theme" class="text-gray-600 dark:text-gray-300 mr-3">Toggle Dark Mode</label>
+        <div class="flex items-center">
+          <label for="toggle-theme" class="sr-only">Toggle Dark Mode</label>
           <div class="relative">
             <input type="checkbox" id="toggle-theme" class="sr-only" onchange="toggleTheme()">
-            <div class="toggle-wrapper w-12 h-6 bg-gray-400 rounded-full p-1.5 flex items-center">
-              <div class="toggle-thumb w-6 h-6 bg-white rounded-full shadow-md transform duration-300 ease-in-out"></div>
+            <div class="toggle-wrapper bg-gray-400 rounded-full p-1.5 flex items-center">
+              <div class="toggle-thumb rounded-full bg-white shadow-md"></div>
             </div>
           </div>
         </div>
