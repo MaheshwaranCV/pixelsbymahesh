@@ -170,24 +170,24 @@
 
 <style>
   .blog-title {
-    display: inline-block;
     font-size: 1.5rem;
     font-weight: bold;
     color: #1a202c; /* text-gray-800 */
     text-decoration: none;
     position: relative;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    padding: 5px;
+    transition: color 0.3s ease;
   }
 
   .blog-title:hover {
-    background-color: #1a202c; /* text-gray-800 */
-    color: white;
+    color: black; /* Or any other color you prefer */
+  }
+
+  .dark .blog-title {
+    color: #e2e8f0; /* text-gray-300 */
   }
 
   .dark .blog-title:hover {
-    background-color: #e2e8f0; /* text-gray-300 */
-    color: #1a202c; /* text-gray-800 */
+    color: white; /* Or any other color you prefer */
   }
 </style>
 
