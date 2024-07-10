@@ -412,7 +412,7 @@
             border-radius: 50%;
             cursor: pointer;
             padding: 10px;
-            z-index: 99; /* Ensure it's above other content */
+            z-index: 99;
           }
 
           #backToTopBtn:hover {
@@ -420,24 +420,23 @@
           }
         </style>
         <script>
-          // Show the button when scrolling down 20px from the top
-            window.onscroll = function() {
-              scrollFunction();
-            };
+          window.onscroll = function() {
+            scrollFunction();
+          };
 
-            function scrollFunction() {
-              if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                document.getElementById("backToTopBtn").style.display = "block";
-              } else {
-                document.getElementById("backToTopBtn").style.display = "none";
-              }
+          function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+              document.getElementById("backToTopBtn").style.display = "block";
+            } else {
+              document.getElementById("backToTopBtn").style.display = "none";
             }
-
-            // Scroll to the top when the button is clicked
-            function topFunction() {
-              document.body.scrollTop = 0; // For Safari
-              document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-            }
+          }
+          function topFunction() {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          }
         </script>
 
         <div>
