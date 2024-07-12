@@ -169,6 +169,18 @@
     }
 </style>
 
+  <!-- Fancybox CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+  <style>
+    .hover-zoom img {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-zoom:hover img {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+
 <script>
   function menuToggle() {
     var menu = document.getElementById('menu');
@@ -314,7 +326,7 @@
       
       <p style="text-align: justify; font-family: 'Montserrat', sans-serif; margin-bottom: 25px;">One of the most enchanting aspects of a sunset is its vibrant colors. As the sun descends, it casts a warm glow across the sky, starting with hues of golden yellow and orange. These colors gradually transition to shades of pink, purple, and deep blue as the sun sinks further below the horizon. Each sunset is unique, offering a different combination of colors that blend and swirl across the sky like a masterpiece painted by nature's brush.</p>
 
-      <a href="https://pixelsbymahesh.imgix.net/Upload/Sunset1.jpg" data-fancybox="gallery" data-title="Witnessing the Beauty of Sunset">
+      <a href="https://pixelsbymahesh.imgix.net/Upload/Sunset1.jpg" data-fancybox="gallery" data-title="Witnessing the Beauty of Sunset" class="hover-zoom">
         <img src="https://pixelsbymahesh.imgix.net/Upload/Sunset1.jpg" alt="Witnessing the Beauty of Sunset" style="width: 100%; height: auto; margin-bottom: 30px;">
       </a>
       
