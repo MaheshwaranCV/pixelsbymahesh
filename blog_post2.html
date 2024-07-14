@@ -209,7 +209,7 @@
       .then(() => {
         var tooltip = document.createElement('div');
         tooltip.className = 'tooltip visible';
-        tooltip.textContent = 'Link copied to clipboard!';
+        tooltip.textContent = '<i class="fas fa-copy"></i> Link copied to clipboard!';
         event.target.parentNode.appendChild(tooltip);
         setTimeout(function() {
           tooltip.classList.remove('visible');
