@@ -545,7 +545,7 @@
               display: none;
               position: fixed;
               bottom: 20px;
-              right: 20px;
+              right: -60px; /* Initial position off-screen */
               background-color: #333;
               color: white;
               border: none;
@@ -553,15 +553,16 @@
               cursor: pointer;
               padding: 10px;
               z-index: 99;
-              opacity: 0;
-              transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-              transform: scale(0.5);
+              transition: right 0.5s ease-in-out;
             }
           
             #backToTopBtn.show {
               display: block;
-              opacity: 1;
-              transform: scale(1);
+              right: 20px; /* Slide in to the screen */
+            }
+          
+            #backToTopBtn.hide {
+              right: -60px; /* Slide out off-screen */
             }
           
             #backToTopBtn:hover {
@@ -577,9 +578,11 @@
             function scrollFunction() {
               const button = document.getElementById("backToTopBtn");
               if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                button.classList.remove("hide");
                 button.classList.add("show");
               } else {
                 button.classList.remove("show");
+                button.classList.add("hide");
               }
             }
           
@@ -590,7 +593,6 @@
               });
             }
           </script>
-          
 
           <p class="font-signika"><b>MAHESHWARAN C V</b></p>
           <p class="mt-4 text-sm text-gray-600 dark:text-gray-300">
