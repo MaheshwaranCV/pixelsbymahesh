@@ -328,6 +328,29 @@
         <a  class="transition duration-300 hover:opacity-75" onclick="copyLink(event)" >
           <img src="dist/assets/link-icon-64.png" alt="Icon" class="w-5 h-5 rounded-image" class="share-button" style="cursor: pointer;" />
         </a>
+        
+        <!-- Web Share API Button -->
+        <a href="#" onclick="shareBlogPost()" class="transition duration-300 hover:opacity-75">
+          <img src="dist/assets/share.png" alt="Icon" class="w-5 h-5 rounded-image" class="share-button" style="cursor: pointer;" />
+        </a>
+        
+        <script>
+          function shareBlogPost() {
+            if (navigator.share) {
+              navigator.share({
+                title: 'Witnessing the Beauty of Sunset',
+                text: 'Exploring the vibrant colors and serene beauty of sunsets, a universal spectacle of nature.',
+                url: 'https://pixelsbymahesh.netlify.app/blog_post1'
+              }).then(() => {
+                console.log('Thanks for sharing!');
+              })
+              .catch((error) => console.error('Error sharing:', error));
+            } else {
+              alert('Web Share API is not supported in this browser.');
+            }
+          }
+        </script>
+        
       </div>
 
       <p style="text-align: justify; font-family: 'Montserrat', sans-serif; margin-bottom: 25px;">In the world of fitness and nutrition, few supplements have garnered as much attention and controversy as creatine. Whether you're a seasoned athlete or just starting your fitness journey, understanding creatine can help you make informed decisions about your health and performance goals.</p>
