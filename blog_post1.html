@@ -283,6 +283,14 @@
     </nav>
   </header>
 
+   <!-- Table of Contents -->
+   <div class="container mx-auto max-w-5xl">
+    <aside class="bg-gray-100 dark:bg-neutral-800 p-4 mb-6 rounded">
+      <h2 class="text-2xl font-bold mb-3">Table of Contents</h2>
+      <nav id="toc" class="pl-3 list-disc"></nav>
+    </aside>
+  </div>
+
 
   <!-- Blog Post Content -->
   <div class="container mx-auto">
@@ -320,6 +328,47 @@
           <img src="dist/assets/link-icon-64.png" alt="Icon" class="w-5 h-5 rounded-image" class="share-button" style="cursor: pointer;" />
         </a>
       </div>
+
+      <!-- Blog post content with headings -->
+      <section>
+        <h2>Introduction</h2>
+        <p>(Your introduction content)</p>
+
+        <h2>The Science Behind Sunsets</h2>
+        <p>(Content about the science)</p>
+
+        <h3>Colors of the Sunset</h3>
+        <p>(Content about the colors)</p>
+
+        <h3>Atmospheric Effects</h3>
+        <p>(Content about the atmospheric effects)</p>
+
+        <h2>Best Places to Witness Sunsets</h2>
+        <p>(Content about best places)</p>
+
+        <h2>Conclusion</h2>
+        <p>(Your conclusion content)</p>
+      </section>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          var toc = document.getElementById('toc');
+          var headers = document.querySelectorAll('article h2, article h3');
+          
+          headers.forEach(function(header) {
+            var link = document.createElement('a');
+            link.href = '#' + header.textContent.trim().replace(/\s+/g, '-').toLowerCase();
+            link.textContent = header.textContent;
+            link.classList.add('block', 'mb-2', 'text-gray-600', 'dark:text-gray-300', 'hover:text-gray-900', 'dark:hover:text-white');
+            
+            header.id = header.textContent.trim().replace(/\s+/g, '-').toLowerCase();
+            
+            var listItem = document.createElement('li');
+            listItem.appendChild(link);
+            toc.appendChild(listItem);
+          });
+        });
+      </script>
 
       <p style="text-align: justify; font-family: 'Montserrat', sans-serif; margin-bottom: 25px;">As the day draws to a close, nature unveils one of its most captivating spectacles: the sunset. This daily phenomenon, where the sun dips below the horizon, paints the sky with a palette of mesmerizing colors, marking the end of daylight and the beginning of twilight.</p>
       
