@@ -333,12 +333,15 @@
     </div>
     
     <script>
-        function toggleShareButtons() {
-            const hiddenButtons = document.querySelectorAll('.share-buttons[style*="display: none"]');
-            hiddenButtons.forEach(button => {
-                button.style.display = button.style.display === 'none' ? 'inline-block' : 'none';
-            });
-        }
+      function toggleShareButtons() {
+          const hiddenButtons = document.querySelectorAll('.share-buttons[style*="display: none"]');
+          hiddenButtons.forEach(button => {
+              button.style.display = 'inline-block';
+          });
+  
+          const moreBtn = document.getElementById('morePngBtn');
+          moreBtn.style.display = 'none';
+      }
     
         function shareBlogPost() {
             if (navigator.share) {
