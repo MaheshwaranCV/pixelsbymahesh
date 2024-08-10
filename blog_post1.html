@@ -320,6 +320,31 @@
           <img src="dist/assets/more-icon.png" alt="More PNG" class="w-5 h-5 rounded-image" style="cursor: pointer;" />
         </a>
 
+        <script>
+          function toggleShareButtons() {
+            var hiddenButtons = document.getElementById('hiddenShareButtons');
+            if (hiddenButtons.style.display === 'none') {
+              hiddenButtons.style.display = 'block';
+            } else {
+              hiddenButtons.style.display = 'none';
+            }
+          }
+        
+          function shareBlogPost() {
+            if (navigator.share) {
+              navigator.share({
+                title: 'Witnessing the Beauty of Sunset',
+                text: 'Exploring the vibrant colors and serene beauty of sunsets, a universal spectacle of nature.',
+                url: 'https://pixelsbymahesh.netlify.app/blog_post1'
+              }).then(() => {
+                console.log('Thanks for sharing!');
+              }).catch((error) => console.error('Error sharing:', error));
+            } else {
+              alert('Web Share API is not supported in this browser.');
+            }
+          }
+        </script>
+
       <div id="hiddenShareButtons" style="display: none;">
         <a class="transition duration-300 hover:opacity-75" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fpixelsbymahesh.netlify.app%2Fblog_post1&text=Witnessing%20the%20Beauty%20of%20Sunset.%0A&via=MaheshwaranCV" target="_blank" class="share-button" rel="noreferrer">
           <span class="sr-only"> Twitter </span>
